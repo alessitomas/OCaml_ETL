@@ -1,0 +1,10 @@
+.vscode
+
+# OCaml project
+etl/_build
+etl/_opam
+
+# Python's rest API
+rest_api/env
+rest_api/__pycache__
+rest_api/data-api-prog-func.pem
