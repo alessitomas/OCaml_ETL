@@ -1,2 +1,3 @@
 (library
- (name etl))
+ (name etl)
+ (libraries cohttp-lwt-unix))
