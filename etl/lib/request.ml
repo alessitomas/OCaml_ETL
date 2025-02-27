@@ -12,5 +12,5 @@ let get_order_item =
   body |> Cohttp_lwt.Body.to_string >|= fun body ->
   body ;;
 
-let order_data = Lwt_main.run get_order ;;
-let order_item_data = Lwt_main.run get_order_item ;;
+let order_data () = Lwt_main.run get_order ;;
+let order_item_data () = Lwt_main.run get_order_item ;;
