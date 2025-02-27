@@ -1,6 +1,6 @@
-let () = Printf.printf "%s\n" "Hello, world!" ;;
+open Etl_lib.Request
 
 
-let () = print_endline ("Received body\n" ^ Etl.Request.order_data) ;;
-
-let () = print_endline ("Received body\n" ^ Etl.Request.order_item_data) ;;
+let () = Printf.printf "%s\n" "Hello, world!" ;
+        print_endline ("Received body\n" ^ order_data) ;
+        print_endline ("Received body\n" ^ order_item_data) ;;
