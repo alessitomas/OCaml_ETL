@@ -1,0 +1,1 @@
+val parse_json_to_record : string -> (Yojson.Basic.t -> 'a) -> 'a list

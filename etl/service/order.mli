@@ -6,4 +6,6 @@ type order = {
   origin : char;
 }
 
-val parse_orders : string -> order list
+val order_json_to_record : Yojson.Basic.t -> order
+
+
