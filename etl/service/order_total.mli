@@ -6,4 +6,6 @@ type order_total = {
 
 open Order_order_item
 
-val generate_order_total: order_order_item list -> string -> char -> int
+
+val filter_by_status_and_origin: order_order_item list -> string -> char -> order_order_item list 
+val generate_totals: order_order_item list -> order_total list
