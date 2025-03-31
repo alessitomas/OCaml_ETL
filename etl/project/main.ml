@@ -3,17 +3,19 @@ open Service.Json_parsing
 open Service.Order
 open Service.Order_item
 open Service.Order_order_item
-open Service.Order_total
+open Service.Generate_output
 
 let print_order_total (order: order_total) =
-        Printf.printf "Order ID: %d, Total Amount: %.2f, Total Taxes: %.2f\n" 
+        Printf.printf "Order ID: %d, Total Amount: %f, Total Taxes: %f\n" 
           order.order_id order.total_amount order.total_taxes
-      
-let print_order_totals (orders: order_total list) =
-        List.iter print_order_total orders
-      
 
-
+let print_monthly_data (monthly_data : monthly_mean) =
+Printf.printf "Year-Month: %s, Mean Amount: %f, Mean Taxes: %f\n" 
+        monthly_data.year_month monthly_data.mean_amount monthly_data.mean_tax
+      
+let print_records records print_function =
+        List.iter print_function records
+      
 let rec capture_status_parameter () =
         print_endline "\nPlease select the status:\n[0]: Pending\n[1]: Complete\n[2]: Cancelled\n";
         let status_input = read_int_opt() in
@@ -38,10 +40,11 @@ let () = Printf.printf "%s\n" "Hello, world!" ;
         let order_order_item_records = order_inner_join order_records order_item_records in 
         let status_parameter = capture_status_parameter () in
         let origin_parameter = capture_origin_parameter () in
-        let order_total = filter_by_status_and_origin order_order_item_records status_parameter origin_parameter 
-        |> generate_totals in
-        
-        Printf.printf "Total Orders %d\n" (List.length order_total); print_order_totals order_total;;
+        let order_order_items_filtered = filter_by_status_and_origin order_order_item_records status_parameter origin_parameter in
+        let order_total = generate_totals order_order_items_filtered in
+        let monthly_data = generate_monthly_mean_data order_order_items_filtered in
+        Printf.printf "Total Orders %d\n" (List.length order_total); print_records order_total print_order_total;
+        Printf.printf "Monthly Data %d\n" (List.length order_total); print_records monthly_data print_monthly_data;;
 
         
          
