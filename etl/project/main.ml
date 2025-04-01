@@ -4,6 +4,7 @@ open Service.Order
 open Service.Order_item
 open Service.Order_order_item
 open Service.Generate_output
+open Service.Generate_csv_output
 
 let print_order_total (order: order_total) =
         Printf.printf "Order ID: %d, Total Amount: %f, Total Taxes: %f\n" 
@@ -44,7 +45,9 @@ let () = Printf.printf "%s\n" "Hello, world!" ;
         let order_total = generate_totals order_order_items_filtered in
         let monthly_data = generate_monthly_mean_data order_order_items_filtered in
         Printf.printf "Total Orders %d\n" (List.length order_total); print_records order_total print_order_total;
-        Printf.printf "Monthly Data %d\n" (List.length order_total); print_records monthly_data print_monthly_data;;
+        Printf.printf "Monthly Data %d\n" (List.length order_total); print_records monthly_data print_monthly_data;
+        order_total_to_csv_data order_total |> to_csv "results/csv/order_total_data.csv";
+        monthly_mean_to_csv_data monthly_data |> to_csv "results/csv/monthly_data.csv";;
 
         
          

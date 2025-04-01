@@ -36,6 +36,8 @@ Requisitos do Projeto
 o tratamento dos dados conjuntamente via operação de inner join . Ou seja, juntar as tabelas
 antes de iniciar as conversões e montagem do Record .
 
+**Checked! Uhul!**
+
 4. Organizar o projeto ETL utilizando dune .
 
 **Checked! Uhul!**
@@ -46,6 +48,7 @@ antes de iniciar as conversões e montagem do Record .
 
 6. Realizar uma saída adicional que contém a média de receita e impostos pagos agrupados por mês e ano.
 
+**Checked! Uhul!**
 
 
 7. Gerar arquivos de testes completos para as funções puras.
