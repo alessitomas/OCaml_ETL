@@ -1,6 +1,17 @@
 open Sqlite3
 open Generate_output
 
+(** [add_order_total_data db order_totals] creates and populates the OrderTotal table in the SQLite database.
+    
+    This function first drops any existing OrderTotal table, then creates a new one
+    with columns for OrderID, TotalAmount, and TotalTaxes. It then inserts all
+    the order totals from the provided list.
+    
+    @param db The opened SQLite database connection
+    @param order_totals A list of order_total records containing order_id, total_amount, and total_taxes
+    @return unit
+    @raise Sqlite3.SqliteError if there's an issue with the SQL execution
+*)
 let add_order_total_data db order_totals = 
   
   let create_table_query = 
@@ -32,7 +43,17 @@ let add_order_total_data db order_totals =
 
   exec db query |> Rc.check  ;;
 
-
+(** [add_monthly_data db monthly_data] creates and populates the MonthlyData table in the SQLite database.
+    
+    This function first drops any existing MonthlyData table, then creates a new one
+    with columns for YearMonth, MeanAmount, and MeanTaxes. It then inserts all the monthly 
+    aggregated data from the provided list.
+    
+    @param db The opened SQLite database connection
+    @param monthly_data A list of month_data records containing year_month, mean_amount, and mean_tax
+    @return unit
+    @raise Sqlite3.SqliteError if there's an issue with the SQL execution
+*)
 let add_monthly_data db monthly_data = 
 
   let create_table_query = 
@@ -62,6 +83,16 @@ let add_monthly_data db monthly_data =
   in
   exec db query |> Rc.check ;;
 
+(** [add_data_to_db order_total monthly_mean] is the main function that handles database operations.
+    
+    This function opens a connection to the SQLite database, adds order total data and monthly mean data,
+    and then properly closes the database connection.
+    
+    @param order_total A list of order_total records to be added to the OrderTotal table
+    @param monthly_mean A list of month_data records to be added to the MonthlyData table
+    @return unit
+    @raise Sqlite3.SqliteError if there's an issue with the database operations
+*)
 let add_data_to_db order_total monthly_mean = 
   let database = db_open "results/sqlite/store_db.sqlite3" in
     add_order_total_data database order_total;

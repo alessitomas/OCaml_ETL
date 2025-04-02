@@ -25,11 +25,11 @@ Requisitos do Projeto
 
 1. Ler os dados de entrada em um arquivo estático na internet (exposto via http). 
 
-    **Checked! Uhul!**
+**Checked! Uhul!**
 
 2. Salvar os dados de saída em um Banco de Dados SQLite.
 
-
+**Checked! Uhul!**
 
 
 3. É possível fazer fazer o tratamento das tabelas de entrada em separado. Mas é desejável realizar
