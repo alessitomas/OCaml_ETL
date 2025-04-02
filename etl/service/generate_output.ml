@@ -13,7 +13,15 @@ type total_accumulator = {
   total_taxes : float;
 }
 
-
+(**
+  Filters orders by status and origin.
+  
+  @param order_order_item_records List of order-order item records.
+  @param status_parameter Status of the order to filter.
+  @param origin_parameter Origin of the order to filter.
+  @return Filtered list of order-order item records.
+  @pure Yes, it is a pure function as it does not have side effects.
+*)
 let filter_by_status_and_origin 
   (order_order_item_records: order_order_item list)
   (status_parameter: string)
@@ -28,6 +36,14 @@ let filter_by_status_and_origin
   
 
 module IntSet = Set.Make(Int)
+
+(**
+  Generates total amounts and taxes for each unique order.
+  
+  @param filtered_order_order_item List of filtered order-order item records.
+  @return List of order_total records.
+  @pure Yes, it is a pure function as it has no side effects.
+*)
 let generate_totals 
   (filtered_order_order_item: order_order_item list) : order_total list = 
 
@@ -62,6 +78,13 @@ type monthly_mean = {
 module StringSet = Set.Make(String)
 
 
+(**
+  Generates monthly mean data for order amounts and taxes.
+  
+  @param filtered_order_order_item List of filtered order-order item records.
+  @return List of monthly_mean records.
+  @pure Yes, it is a pure function as it does not have side effects.
+*)
 let generate_monthly_mean_data (filtered_order_order_item: order_order_item list) = 
   
   let year_month_combinations = 
