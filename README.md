@@ -44,7 +44,7 @@ antes de iniciar as conversões e montagem do Record .
 
 5. Documentar todas as funções geradas via formato docstring.
 
-
+**Checked! Uhul!**
 
 6. Realizar uma saída adicional que contém a média de receita e impostos pagos agrupados por mês e ano.
 

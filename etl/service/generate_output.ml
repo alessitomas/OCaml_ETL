@@ -31,7 +31,7 @@ let filter_by_status_and_origin
     |> List.filter (fun order_order_item -> let order = order_order_item.order in order.status = status_parameter)
     |> List.filter (fun order_order_item -> let order = order_order_item.order in order.origin = origin_parameter) in
     
-    Printf.printf "Total Records %d\n" (List.length filtered); filtered ;;
+    filtered ;;
   
   
 
