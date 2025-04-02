@@ -5,6 +5,7 @@ open Service.Order_item
 open Service.Order_order_item
 open Service.Generate_output
 open Service.Generate_csv_output
+open Service.Generate_sqlite3_output
 
 let print_order_total (order: order_total) =
         Printf.printf "Order ID: %d, Total Amount: %f, Total Taxes: %f\n" 
@@ -42,12 +43,13 @@ let () = Printf.printf "%s\n" "Hello, world!" ;
         let status_parameter = capture_status_parameter () in
         let origin_parameter = capture_origin_parameter () in
         let order_order_items_filtered = filter_by_status_and_origin order_order_item_records status_parameter origin_parameter in
-        let order_total = generate_totals order_order_items_filtered in
+        let order_totals = generate_totals order_order_items_filtered in
         let monthly_data = generate_monthly_mean_data order_order_items_filtered in
-        Printf.printf "Total Orders %d\n" (List.length order_total); print_records order_total print_order_total;
-        Printf.printf "Monthly Data %d\n" (List.length order_total); print_records monthly_data print_monthly_data;
-        order_total_to_csv_data order_total |> to_csv "results/csv/order_total_data.csv";
-        monthly_mean_to_csv_data monthly_data |> to_csv "results/csv/monthly_data.csv";;
+        Printf.printf "Total Orders %d\n" (List.length order_totals); print_records order_totals print_order_total;
+        Printf.printf "Monthly Data %d\n" (List.length order_totals); print_records monthly_data print_monthly_data;
+        order_total_to_csv_data order_totals |> to_csv "results/csv/order_total_data.csv";
+        monthly_mean_to_csv_data monthly_data |> to_csv "results/csv/monthly_data.csv";
+        add_data_to_db order_totals monthly_data;;
 
         
          
