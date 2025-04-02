@@ -98,10 +98,15 @@ let generate_monthly_mean_data (filtered_order_order_item: order_order_item list
 
   List.fold_left ( fun monthly_mean_records year_month ->
     
-    let order_items_in_year_month = List.filter (fun order_order_item -> 
+    let order_order_items_in_year_month = List.filter (fun order_order_item -> 
       let order = order_order_item.order in String.starts_with ~prefix: year_month order.order_date 
       ) filtered_order_order_item 
-      |> List.map (fun order_order_item -> order_order_item.order_item)
+      
+    in
+
+    let num_orders_in_year_month = order_order_items_in_year_month |> List.map (fun order_order_item -> String.sub order_order_item.order.order_date 0 7) |> StringSet.of_list |> StringSet.to_list |> List.length
+    in
+    let order_items_in_year_month = order_order_items_in_year_month|> List.map (fun order_order_item -> order_order_item.order_item)
     in
 
     let totals = List.fold_left ( fun totals order_item ->
@@ -110,9 +115,9 @@ let generate_monthly_mean_data (filtered_order_order_item: order_order_item list
         total_taxes = totals.total_taxes +. order_item.price *. float(order_item.quantity) *. order_item.tax;
       }
     ) {total_amount=0.; total_taxes=0.} order_items_in_year_month in
-    let num_orders = List.length order_items_in_year_month in
+    
 
-    monthly_mean_records @ [{year_month= year_month; mean_amount= totals.total_amount /. float(num_orders); mean_tax = totals.total_taxes /. float(num_orders)}]
+    monthly_mean_records @ [{year_month= year_month; mean_amount= totals.total_amount /. float(num_orders_in_year_month); mean_tax = totals.total_taxes /. float(num_orders_in_year_month)}]
 
   ) [] year_month_combinations;;
 
