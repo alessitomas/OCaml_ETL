@@ -53,3 +53,4 @@ antes de iniciar as conversões e montagem do Record .
 
 7. Gerar arquivos de testes completos para as funções puras.
 
+**Checked! Uhul!**
