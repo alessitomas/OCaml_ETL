@@ -171,6 +171,7 @@ Conversion functions were implemented to map JSON data to these OCaml types.
 - Implemented a function to transform OCaml records into CSV-compatible `string lists`.
 - Then used the library to transform these `string lists` representations into CSV files.
 - **Bonus**: Discovered bugs in the official documentation and contributed to open source by creating an issue detailing the problem: [Issue Link](https://github.com/ocaml/ocaml.org/issues/3043).
+- Results are stored at: `etl/results/csv`
 
 
 ### 9. Save Data to SQLite
@@ -179,6 +180,17 @@ Conversion functions were implemented to map JSON data to these OCaml types.
 - Created one table for each type representation.
 - Created functions that map record lists into SQL insertion value strings.
 - Executed the SQL statements.
+- Results are stored at: `etl/results/sqlite/store_db.sqlite3`
+
+Results inspected using DB Browser for SQLite:
+
+Order_total table:
+
+![order_total_db](images/order_total_data_db.png)
+
+Monthly_mean table:
+
+![monthly_mean_db](images/monthly_data_db.png)
 
 ### 10. Document Functions
 - All functions were documented using structured docstrings.
