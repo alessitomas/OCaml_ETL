@@ -44,7 +44,7 @@ Ensure you have the following dependencies installed before running the project:
    cd etl
    ```
 
-2. Create a switch using ocaml-base-compiler.5.3.0 and activate it
+2. Create a switch using **ocaml-base-compiler.5.3.0** and activate it
   ```sh
   opam switch create my_custom_switch ocaml-base-compiler.5.3.0
   ```
