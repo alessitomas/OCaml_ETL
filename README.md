@@ -140,22 +140,42 @@ Conversion functions were implemented to map JSON data to these OCaml types.
           total_amount : float;
           total_taxes : float;
         }
+  
+- Transformed order_order_item list into order_total list
+- Grouped order_item by order_id, aggregating data related to price quantity and tax to calculate total_amount and total_taxes.
 
+Detailed implamentation:
 - Used order_order_item list to compute order_total list
 1. Using IntSet I created a list of uniques order_id's
 2. Iterade over this unique order_id's list using `List.fold_left` and having as accumulator an empty list representing the order_total list
-3. For every unique order_id filtered order_item that had that id and iterate over them using and inner `List.fold_left` where the accumulator is total_amount and total_taxes
+3. For every unique order_id filtered order_items that had the same order_id and iterate over them using and inner `List.fold_left` where the accumulator is total_amount and total_taxes
 4. Using the inner `List.fold_left` accumulator return, created a order_total record and appended to order_total list acumulator.
 
 ### 7. Compute Additional Monthly Summary
 - Introduced a new type to store mean amount and mean tax per month:
+
+        type monthly_mean = {
+          year_month: string;
+          mean_amount: float;
+          mean_tax: float;
+        }
         
-  
-- Grouped data by year and month using `List.fold_left`.
+- Transformed order_order_item list into monthly_mean  list 
+- Grouped order_item by yyyy-mmmm, aggregating data related to price quantity and tax to calculate total_amount and total_taxes, while also having the number of orders in that month to use it to calculate the mean_amount and mean_tax.
+
+Detailed implamentation:
+- Used order_order_item list to compute monthly_mean list
+1. Using StringSet I created a list of uniques yyyy-mm.
+2. Iterade over this unique yyyy-mm list using `List.fold_left`, having as accumulator an empty list representing the monthly_mean list and calculated the number of orders in that month.
+3. For every unique yyyy-mm filtered order_items that had the same yyyy-mm and iterated over them using and inner `List.fold_left` where the accumulator is total_amount and total_taxes
+4. Using the inner `List.fold_left` accumulator return, calculated the mean and created a monthly_mean record, appendeding it to monthly_mean list acumulator.
+
 
 ### 8. Save Data to CSV
 - Utilized the [OCaml CSV Library](https://ocaml.org/p/csv/2.4) to write processed data to a CSV file.
 - Implemented a function to transform OCaml records into CSV-compatible `string lists`.
+- Then used the library to transform these `string lists` representations into csv files.
+- **Bônus**: I've found bugs in the oficial documentation, and used that opportunity to contribute to open source by creating an issue detailing the problem: [Issue Link](https://github.com/ocaml/ocaml.org/issues/3043)
 
 ### 9. Save Data to SQLite
 - Designed a schema for storing order data and monthly summary in an SQLite database.
