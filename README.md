@@ -229,6 +229,18 @@ Generative AI was used in specific parts of the project:
 - Helping generate complete unit tests.
 - Helping in creation of README.md.
 
+
+## All Required Requirements  
+
+- [x] The project must be implemented in **OCaml**.  
+- [x] To compute the output, the use of **map**, **reduce**, and **filter** is required.  
+- [x] The code must include functions for **reading from http API and writing to CSV files**, which will generate **impure functions**.  
+- [x] Separate **impure functions** from **pure functions** in the project files, (In the docstring of each function, there is a pure section calssifying the function as pure or impure).  
+- [x] The input data must be loaded into a **list of Records**.  
+- [x] The use of **Helper Functions** to load fields into a Record is mandatory.  
+- [x] A **project report** must be written, describing how each step was built. This should serve as a guide for someone reproducing the project in the future. The report must explicitly **state whether Generative AI was used** or not. 
+
+
 ## Optional Requirements Checklist
 - [x] Read input data from a static file on the internet (exposed via HTTP).
 - [x] Save output data in an SQLite database.
