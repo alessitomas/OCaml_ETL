@@ -43,12 +43,17 @@ Ensure you have the following dependencies installed before running the project:
    ```sh
    cd etl
    ```
-2. Create a switch inside the project folder and activate it
+
+2. Create a switch using ocaml-base-compiler.5.3.0 and activate it
   ```sh
-  opam switch create . && eval $(opam env)
+  opam switch create my_custom_switch ocaml-base-compiler.5.3.0
   ```
 
-3 Installing the dependencies
+  ```sh
+    eval $(opam env)
+  ```
+
+3 Installing the dependencies, it will use the file `etl/etl.opam` to install the dependencies
   ```sh
   opam install . --deps-only
   ```
