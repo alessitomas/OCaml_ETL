@@ -71,6 +71,11 @@ Ensure you have the following dependencies installed before running the project:
 6. Follow the terminal instructions. Once the execution is complete, the processed files will be available in:
   
    `etl/results/`
+
+6. To run unit tests run:
+  ```sh
+   dune test
+  ```
    
 
 ## ETL Development Report
