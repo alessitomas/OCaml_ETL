@@ -44,20 +44,39 @@ Ensure you have the following dependencies installed before running the project:
    cd etl
    ```
 
-2. Build the project:
+2. Create a switch using **ocaml-base-compiler.5.3.0** and activate it
+  ```sh
+  opam switch create my_custom_switch ocaml-base-compiler.5.3.0
+  ```
+
+  ```sh
+    eval $(opam env)
+  ```
+
+3 Installing the dependencies, it will use the file `etl/etl.opam` to install the dependencies
+  ```sh
+  opam install . --deps-only
+  ```
+
+4. Build the project:
    ```sh
    dune build
    ```
 
-3. Execute the ETL process:
+5. Execute the ETL process:
    ```sh
    dune exec etl
    ```
 
-4. Follow the terminal instructions. Once the execution is complete, the processed files will be available in:
-   ```sh
-   etl/results/
-   ```
+6. Follow the terminal instructions. Once the execution is complete, the processed files will be available in:
+  
+   `etl/results/`
+
+6. To run unit tests run:
+  ```sh
+   dune test
+  ```
+   
 
 ## ETL Development Report
 
