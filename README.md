@@ -178,8 +178,11 @@ Detailed implamentation:
 - **Bônus**: I've found bugs in the oficial documentation, and used that opportunity to contribute to open source by creating an issue detailing the problem: [Issue Link](https://github.com/ocaml/ocaml.org/issues/3043)
 
 ### 9. Save Data to SQLite
-- Designed a schema for storing order data and monthly summary in an SQLite database.
+- Designed a schema for storing order_total data and monthly_mean data in an SQLite database.
 - Used [OCaml SQLite3 Library](https://ocaml.org/p/sqlite3/5.1.0/doc/Sqlite3/index.html) to insert computed results efficiently.
+- Create one table for each type representation
+- Created a function that maps their records list into a insertion values sql string
+- Executed that sql 
 
 ### 10. Document Functions
 - All functions were documented using structured docstrings.
