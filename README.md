@@ -213,6 +213,7 @@ Monthly_mean table:
 
 ### 10. Document Functions
 - All functions were documented using structured docstrings.
+- Inside the docstring is the information if the function is pure or not.
 - AI assistance was used to generate the docstrings for each function.
 
 ### 11. Implement Unit Tests
