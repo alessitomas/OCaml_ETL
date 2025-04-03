@@ -1,36 +1,91 @@
-# Project Report
+# ETL Project
 
-## Introduction
-This report outlines the development process of the project, detailing the steps taken to implement the required functionalities. It serves as a guide for anyone looking to replicate or extend the project in the future. This project was implemented in OCaml and adheres to functional programming principles using map, reduce (fold left), and filter. 
+- [Project Overview](#project-overview)
+- [Project Structure](#project-structure)
+- [Setup and Usage](#setup-and-usage)
+    - [Prerequisites](#prerequisites)
+    - [Running the ETL Pipeline](#running-the-elt-pipeline)
+- [Development Report](#development-report)
+
+
 
 ## Project Overview
-The project aims to `EXTRACT` data from an API containing order, and orderItem information, then `TRANSFORM` this data to provide rich insights and finally `LOAD` the data for usage in CSV and SQLite db formats.
+This project implements an **ETL (Extract, Transform, Load) pipeline** for processing E-commerce data. It performs the following steps:
 
-## Development Process
+- **Extract:** Fetches data via HTTP from a deployed REST API.
+- **Transform:** Processes the extracted data to generate insights.
+- **Load:** Saves the transformed data in **CSV** and **SQLite database** formats for further use.
+
+## Project Structure
+
+```
+/rest_api   → Python-based REST API serving E-commerce data, deployed on an AWS EC2 instance.
+
+/etl        → OCaml-based ETL pipeline that fetches, processes, and stores data locally.
+
+/etl/results → Output directory containing the processed CSV and SQLite database files.
+```
+
+## Setup and Usage
+
+### Prerequisites
+Ensure you have the following dependencies installed before running the project:
+
+- **OCaml Tooling:** [`dune`](https://dune.build/) (build system)
+- **Libraries:**
+  - [`cohttp-lwt-unix`](https://github.com/mirage/ocaml-cohttp) (HTTP requests)
+  - [`yojson`](https://github.com/ocaml-community/yojson) (JSON parsing)
+  - [`csv`](https://github.com/Chris00/ocaml-csv) (CSV generation)
+  - [`sqlite3`](https://github.com/mmottl/sqlite3-ocaml) (Database interactions)
+  - [`alcotest`](https://github.com/mirage/alcotest) (Unit testing framework)
+
+### Running the ETL Pipeline
+
+1. Navigate to the ETL project directory:
+   ```sh
+   cd etl
+   ```
+
+2. Build the project:
+   ```sh
+   dune build
+   ```
+
+3. Execute the ETL process:
+   ```sh
+   dune exec etl
+   ```
+
+4. Follow the terminal instructions. Once the execution is complete, the processed files will be available in:
+   ```sh
+   etl/results/
+   ```
+
+
+## ELT Development Report
+
+This report outlines the development process of the project, detailing the steps taken to implement the required functionalities. It serves as a guide for anyone looking to replicate or extend the project in the future. This project was implemented in OCaml and adheres to functional programming principles.
 
 ### 1. Create Python API
-A Python API was developed to serve order and order item data. This API was responsible for exposing endpoints that returned order details in JSON format. AI assistance was used in structuring and implementing the API to ensure robustness and efficiency.
+A Python API was developed to serve order and order item data. This API was responsible for exposing endpoints that returned order details in JSON format. 
+
+API endpoints:
+
+- order: http://44.200.31.239:8000/order
+
+- orderItem: http://44.200.31.239:8000/orderItem
+
 
 ### 2. Set Up Project Structure
-- The project was structured using `dune`, following best practices from:
-  - [OCaml Verse Quickstart](https://ocamlverse.net/content/quickstart_ocaml_project_dune.html)
-  - [Dune Quick Start Guide](https://dune.readthedocs.io/en/latest/quick-start.html)
 
-- Required dependencies were installed, including the following libraries: 
+1. Installed `dune` and created the basic project structure using it.
 
-    - `cohttp-lwt-unix`: HTTP requests
-    - `yojson`: JSON parsing
-    - `csv`: CSV generation
-    - `sqlite3`: Fatabase interactions.
-    - `alcotest`: Unit test framework
+- Manually created directories to organize the project, separating concerns between, main execution, fetching data, processing data, and testing.
 
-- The directory structure was organized to separate concerns between, main execution, fetching data, processing data, and testing.
-
-    - `lib/` -> main execution file
-    - `controller/` -> fetching data logic
-    - `service/` -> processing data logic
-    - `test/` -> testing 
-
+    - `lib/` -> for the main execution file
+    - `controller/` -> for fetching data logic
+    - `service/` -> for all processing data logic
+    - `test/` -> for testing 
 
 
 ### 3. Fetch and Parse Data
@@ -80,6 +135,7 @@ Generative AI was used in specific parts of the project:
 - Assisting with Python API creation.
 - Generating docstring documentation for functions.
 - Helping generate complete unit tests.
+- Helping in creation of README.md.
 
 
 ## Optional Requirements Checklist
@@ -90,3 +146,10 @@ Generative AI was used in specific parts of the project:
 - [x] Document all functions using docstring format.
 - [x] Provide an additional output containing the average revenue and taxes paid, grouped by month and year.
 - [x] Generate comprehensive test files for pure functions.
+
+### Bônus delivables
+
+- [x] Deployed an API that serves data over the internet.
+- [x] Parsed a request request into Json.
+- [x] During development found erros in the CSV library documentation and created an issue reporting it.
+

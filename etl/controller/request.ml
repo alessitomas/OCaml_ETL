@@ -1,7 +1,8 @@
 open Lwt
 open Cohttp_lwt_unix
 
-let api_url = "http://0.0.0.0:8000"
+let prod_env = true 
+let api_url = if prod_env then "http://44.200.31.239:8000" else "http://0.0.0.0:8000"
 
 (**
   Fetches order data from the API asynchronously.
