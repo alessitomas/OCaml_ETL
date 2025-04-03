@@ -4,7 +4,7 @@
 - [Project Structure](#project-structure)
 - [Setup and Usage](#setup-and-usage)
     - [Prerequisites](#prerequisites)
-    - [Running the ETL Pipeline](#running-the-elt-pipeline)
+    - [Running the ETL Pipeline](#running-the-etl-pipeline)
 - [Development Report](#etl-development-report)
 
 
@@ -62,7 +62,7 @@ Ensure you have the following dependencies installed before running the project:
    ```
 
 
-## ELT Development Report
+## ETL Development Report
 
 This report outlines the development process of the project, detailing the steps taken to implement the required functionalities. It serves as a guide for anyone looking to replicate or extend the project in the future. This project was implemented in OCaml and adheres to functional programming principles.
 
