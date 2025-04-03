@@ -43,21 +43,30 @@ Ensure you have the following dependencies installed before running the project:
    ```sh
    cd etl
    ```
+2. Create a switch inside the project folder and activate it
+  ```sh
+  opam switch create . && eval $(opam env)
+  ```
 
-2. Build the project:
+3 Installing the dependencies
+  ```sh
+  opam install . --deps-only
+  ```
+
+4. Build the project:
    ```sh
    dune build
    ```
 
-3. Execute the ETL process:
+5. Execute the ETL process:
    ```sh
    dune exec etl
    ```
 
-4. Follow the terminal instructions. Once the execution is complete, the processed files will be available in:
-   ```sh
-   etl/results/
-   ```
+6. Follow the terminal instructions. Once the execution is complete, the processed files will be available in:
+  
+   `etl/results/`
+   
 
 ## ETL Development Report
 
