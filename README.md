@@ -172,9 +172,10 @@ Conversion functions were implemented to map JSON data to these OCaml types.
 - Then used the library to transform these `string lists` representations into CSV files.
 - **Bonus**: Discovered bugs in the official documentation and contributed to open source by creating an issue detailing the problem: [Issue Link](https://github.com/ocaml/ocaml.org/issues/3043).
 
+
 ### 9. Save Data to SQLite
 - Designed a schema for storing order_total data and monthly_mean data in an SQLite database.
-- Used [OCaml SQLite3 Library](https://ocaml.org/p/sqlite3/5.1.0/doc/Sqlite3/index.html) to insert computed results efficiently.
+- Used [OCaml SQLite3 Library](https://ocaml.org/p/sqlite3/5.1.0/doc/Sqlite3/index.html).
 - Created one table for each type representation.
 - Created functions that map record lists into SQL insertion value strings.
 - Executed the SQL statements.
